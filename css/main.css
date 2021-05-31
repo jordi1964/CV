@@ -1,0 +1,871 @@
+/** CUSTOM PROPERTIES **/
+
+:root {
+    --fontPrincipal: 'Open Sans', sans-serif;
+    --fontParagraf: 'Crimson Text', serif;
+    --primari: #000000;
+    --complementari: #ffffff;
+    --gris: #e1e1e1;
+    --secundari: #83a3fd;
+    --secundari-opacitat: rgba(131,163,253, .5);
+}
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; /* 1 rem = 10px */
+    scroll-behavior: smooth;    
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+    font-family: var(--fontPrincipal);
+    font-size: 1.6rem;
+    line-height: 1.8;
+    background-color: var(--primari);
+    color: var(--complementari);
+}
+
+
+/** GLOBALS **/
+.contenidor {
+    width: min(90%, 120rem);
+    margin: 0 auto;
+}
+a {
+    text-decoration: none;
+    color: var(--complementari);
+}
+h1, h2, h3, h4 {
+    font-family: var(--fontPrincipal);
+    font-weight: 300;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+}
+
+/* Assigno margin-left: 2rem per h1 i h2 per tenir un correcte aliniament a l'esquerra amb els projectes */
+h1 {
+    font-size: 6rem;
+    margin: 3rem 2rem;
+}
+h2 {
+    font-size: 3rem;
+    margin: 2rem 0 0 2rem;
+}
+section h2 {
+    font-size: 4rem;
+}
+h3 {
+    font-size: 3.2rem;
+}
+h4 {
+    font-size: 2.4rem;
+}
+p {
+    font-family: var(--fontParagraf);
+    font-size: 1.8rem;
+    line-height: 1.4;
+}
+
+@media (min-width: 768px) {
+    h1 {
+        font-size: 8rem;
+        margin: 4rem 2rem;
+    }
+    h2 {
+        font-size: 4rem;
+        margin: 3rem 0 0 2rem;
+    }
+    section h2 {
+        font-size: 6rem;
+    }
+}
+@media (min-width: 992px) {
+    h1 {
+        font-size: 10rem;
+        margin: 5rem 2rem;
+    }
+    h2 {
+        font-size: 5rem;
+        margin: 3rem 0 0 2rem;
+    }
+    section h2 {
+        font-size: 8rem;
+    }
+}
+
+img {
+    max-width: 100%;
+}
+section {
+    padding: 5rem 0;
+
+}
+
+
+/** UTILITATS **/
+
+/* Animació links */
+.ani {
+    animation: animacio 5s infinite;
+}
+@keyframes animacio {
+    0% {
+        color: var(--complementari);
+    }
+    50% {
+        color: var(--secundari);
+    }
+    100% {
+        color: var(--complementari);
+    }
+}
+
+.ani-svg {
+    animation: animacio-svg 5s infinite;
+}
+@keyframes animacio-svg {
+    0% {
+        fill: var(--complementari);
+    }
+    50% {
+        fill: var(--secundari);
+    }
+    100% {
+        fill: var(--complementari);
+    }
+  }
+
+
+
+/** HEADER **/
+
+/* Divisió espai vertical:
+    Format mòbil: barra 40vh, header-top 50vh, header-bottom 10vh.
+    Format ordinador (mq > 992) i apaisat: barra 10vh, header-top 70vh, header-bottom 20vh. */
+/* Barra navegació:
+    Vertical (<480)
+    Horitzontal (>480) */
+
+.barra {
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+nav.navegacio {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 2rem;
+    z-index: 1; /* evita quedar oculta per la foto en formats raros */
+}
+
+nav.navegacio a {
+    margin: .5rem 0 .5rem 2rem;
+    font-size: 2rem;
+    transition: all .5s ease-in-out;
+}
+nav.navegacio a:hover {
+    color: var(--secundari);
+}
+div.svg {
+    width: 5rem;
+    height: 5rem;
+    display: inline-block;
+}
+svg {
+    width: 100%;
+    height: auto;
+    fill: var(--complementari);
+    transition: all .5s ease-in-out;
+}
+svg:hover {
+    fill: var(--secundari);
+}
+
+@media (min-width: 481px) {
+    nav.navegacio {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 2rem;
+    }
+}
+@media (min-width: 769px) {
+    nav.navegacio a {
+        margin-right: 2rem;
+    }
+}
+
+
+/* Foto i nom */
+
+/* amb flex-direction column i flex end empenyo el continguts cap avall */
+.header-top {
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.header-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-top: solid 2px var(--secundari);
+}
+.header-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.header-bottom {
+    height: 10vh;
+    background-color: var(--primari);
+}
+
+@media (min-width: 992px) {
+    .barra {
+        height: 10vh;
+    }
+    .header-top {
+        height: 70vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .header-left {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        border-top: none;
+    } 
+    .header-right {
+        grid-column: 2 / 2;
+    } 
+    .header-bottom {
+        height: 20vh;
+    }
+    .header-bottom div {
+        border-top: solid 2px var(--secundari);
+    }  
+}
+
+/* Repeteixo distribució per format apaisat */
+@media (orientation: landscape) {
+    .barra {
+        height: 10vh;
+    }
+    .header-top {
+        height: 70vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+    .header-left {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+        border-top: none;
+    } 
+    .header-right {
+        grid-column: 2 / 2;
+    } 
+    .header-bottom {
+        height: 20vh;
+    }
+    .header-bottom div {
+        border-top: solid 2px var(--secundari);
+    }  
+}
+
+/* Media queries header per formats molt petits ( <370px ) */
+
+@media (max-width: 369px) {
+    h1 {
+        font-size: 4rem;
+    }
+    h2 {
+        font-size: 2rem;
+    }
+}
+
+/* Media queries per formats apaisats de molt poca alçada (<480px). Evita problemes en iPhoneX apaisat i d'altres */
+
+@media (max-height: 480px) {
+    .header-top {
+        grid-template-columns: 5fr 4fr;
+    }
+}
+
+
+/** BARRA OCULTA **/
+
+.barra-oculta {
+    background-color: var(--primari);
+    z-index: 2;
+    position: fixed;
+    top: -12rem;
+    height: auto;
+    width: 100%;
+    transition: all .5s ease-in-out;
+    box-shadow: 1px 1px 3px 2px var(--secundari-opacitat);
+}
+.barra-visible { /* classe a afegir amb JS */
+    position: fixed;
+    top: 0;
+}
+nav.navegacio-oculta {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0;
+    justify-content: space-between;
+}
+nav.navegacio-oculta a {
+    margin: 0 1rem;
+    font-size: 1.5rem;
+    transition: all .5s ease-in-out;
+}
+nav.navegacio-oculta a:hover {
+    color: var(--secundari);
+}
+div.svg-petit {
+    width: 3rem;
+    height: 3rem;
+}
+.oculta-dre {
+    display: none;
+}
+/* link inici ocult per tamanys petits, perquè no hi quep */
+@media (min-width: 480px) {
+    .oculta-dre {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    nav.navegacio-oculta {
+        /* 2 propietats de la classe contenidor: */
+        width: min(90%, 120rem);
+        margin: 0 auto;        
+        justify-content: flex-start;
+    }
+    nav.navegacio-oculta a {
+        margin: 1rem 2rem 0 2rem;
+        font-size: 2rem;
+        transition: all .5s ease-in-out;
+    }
+    div.svg-petit {
+        width: 5rem;
+        height: 5rem;
+    }
+}
+
+/* Media queries barra oculta per formats molt petits ( <370px ) */
+
+@media (max-width: 369px) {
+    nav.navegacio-oculta a {
+        font-size: 1.2rem;
+    }
+}
+
+
+
+/** SKILLS-PARALLAX **/
+
+.parallax::before {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed; /* <-- EFECTE PARALLAX !!! */
+}
+.skills-1,
+.skills-2,
+.skills-3 {
+    position: relative;
+    height: auto;
+    padding: 15rem 2rem;
+}
+
+/** Imatges de fons parallax **/
+
+/* Imatge tecles */
+.skills-1::before {
+    background-image: url(../img/fotos/Img10036-fear-bn-600x400.jpg);
+    content: '';
+}
+@media (min-width: 768px) {
+    .skills-3::before {
+        background-image: url(../img/fotos/Img10036-fear-bn-1800-left.jpg);
+        content: '';
+    }
+}
+
+/* Imatge tabac */
+.skills-2::before {
+    background-image: url(../img/fotos/Img10043-bn-600x400.jpg);
+    content: '';
+}
+@media (min-width: 768px) {
+    .skills-2::before {
+        background-image: url(../img/fotos/Img10043-bn-1800-left.jpg);
+        content: '';
+    }
+}
+
+/* Imatge mà al cor */
+.skills-3::before {
+    background-image: url(../img/fotos/Img10046-bn-600x600.jpg);
+    content: '';
+}
+@media (min-width: 768px) {
+    .skills-3::before {
+        background-image: url(../img/fotos/Img10046-bn-1800.jpg);
+        content: '';
+    }
+}
+
+.skills {
+    position: relative;
+    background-color: rgba(256, 256, 256, .5);
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+@media (min-width: 768px) {
+    .skills-center {
+        width: 50%;
+        margin: 0 auto;
+    }
+    .skills-left {
+        width: 50%;
+        margin: 0 auto 0 0;
+    }
+    .skills-right {
+        width: 50%;
+        margin: 0 0 0 auto;
+    }
+}
+.skills svg {
+    fill: var(--primari);
+    transition: all .5s ease-in-out;
+}
+.skills svg:hover {
+    fill: var(--secundari);
+}
+.skills h4, 
+.skills p {
+    margin: 0;
+    padding: 0;
+    font-style: italic;
+    text-align: left;
+    color: var(--primari);
+}
+.skills h4 {
+    padding: 1.5rem 0;
+}
+
+
+
+/** PROJECTES **/
+
+
+ul.graella {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.projectes-text p {
+    padding-left: 2rem;
+}
+@media (min-width: 992px) {
+    .projectes-text p {
+        max-width: 50%;
+    }
+}
+
+
+.projectes-contingut {
+    margin-top: 2rem;
+}
+
+/* Graella projectes */
+@media (min-width: 480px) {
+    ul.graella {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    li.categoria {
+        grid-column: 1 / 3; /* ocupa tota l'amplada */
+    }
+}
+@media (min-width: 992px) {
+    ul.graella {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+    }
+    li.categoria {
+        grid-column: 1 / 4; /* ocupa tota l'amplada */
+    }
+}
+
+.ul.graella li {
+    margin-top: 3rem;
+}
+ul.graella li .h4 {
+    display: flex;
+    align-items: flex-start;
+    padding: 2rem 0 0 2rem;
+}
+ul.graella h4 {
+    /* text-align: center;
+    display: inline-block;
+    margin: 0 auto;
+    transition: all .5s ease-in-out;
+    cursor: pointer;  */
+    border-bottom: solid 1px var(--secundari);
+    text-align: left;
+    cursor: pointer;
+}
+ul.graella h4:hover {
+    color: var(--secundari); 
+} 
+.projecte-imatge {
+    overflow: hidden;
+    padding-bottom: 1rem;
+}
+.projecte-imatge img {
+    display: block;
+    margin: 0 auto;
+    transition: all .5s ease-in-out;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px 2px var(--secundari-opacitat);
+}
+.projecte-imatge img:hover {
+    transform: scale(1.08);
+}
+
+li.categoria h3 {
+    padding: 5rem 2rem;
+}
+li.categoria span {
+    font-weight: bold;
+    color: var(--secundari);
+}
+
+
+/* Estils fitxa destacada */
+.fons-blanc { /* Afegit via JS */
+    background-color: var(--complementari);
+    color: var(--primari);
+    border: 1px solid var(--secundari);
+    border-radius: .5rem;
+    box-shadow: 2px 2px 3px 3px var(--secundari-opacitat); /* efecte classe .ombra */
+}
+li.fons-blanc:nth-child(1) {
+    display: block; /* Aparició text descriptiu */
+}
+
+.ocult {
+    display: none;
+}
+p.text-ocult {
+    margin: 0;
+    padding: 2rem;
+}
+
+
+/* Estils configuració imatges a la graella */
+.adaptable {
+    width: 100%;
+    height: auto;
+    padding: 2rem;
+}
+/* Imatges verticals -> 70% amplada */
+.imatge-alta {
+    width: 70%;
+}
+/* Imatges quadrades -> 85% amplada */
+.imatge-quadrada {
+    width: 85%;
+}
+/* Imatges apaisades -> 100% amplada (format x defecte) */
+
+
+/** CURRICULUM **/
+
+@media (min-width: 992px) {
+    .curri-top {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.curriculum img {
+    box-shadow: none;
+}
+.curri-graella {
+    padding-left: 2rem;
+}
+
+.curri-dades {
+    margin-top: 2rem;
+}
+.curri-text p {
+    padding: 0;
+    margin: 2rem 0 0 0;
+}
+
+.curri-text h3 {
+    border-bottom: solid 1px var(--secundari);
+}
+
+.curri-picto {
+    margin-top: 1rem;
+}
+
+div.contacte div {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+.contacte svg {
+    width: 4rem;
+    height: auto;
+}
+.contacte p {
+    margin: 0 0 0 1rem;
+}
+
+.curri-text ul {
+    margin: 2rem 0 0 0;
+    padding: 0 0 0 2rem;
+}
+
+.curri-text li {
+    font-family: var(--fontParagraf);
+    font-size: 1.8rem;
+    line-height: 1.4;
+    margin-bottom: 1rem;
+}
+.curri-text li span {
+    font-weight: bold;
+}
+
+@media (min-width: 768px) {
+
+    .curri-graella {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+    .curri-dades {
+        display: grid;
+        grid-template-columns: 5rem auto;
+        gap: 1rem;
+    }
+    .curri-picto {
+        margin-top: -1rem;
+    }
+}
+
+
+/** DESENVOLUPAMENT WEB **/
+
+.webs {
+    padding: 0 2rem;
+    margin-top: 3rem;
+}
+
+.webs h3 {
+    border-bottom: solid 1px var(--secundari);
+    margin-bottom: 2rem;
+}
+
+.webs p {
+    padding: 0;
+    width: 100%;
+}
+
+@media (min-width: 768px) {
+    .webs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .webs p {
+        max-width: 100%;
+    }
+}
+
+
+/** FOOTER **/
+
+footer {
+    background-color: var(--secundari);
+}
+footer p {
+    text-align: center;
+    margin: 0;
+    padding: 2rem;
+}
+
+/** PROVES **/
+
+.gran {
+    display: flex;
+    justify-content: center;
+}
+.petit {
+    width: 50%;
+    background-color: red;
+}
+.petit p {
+    margin: 0;
+    padding: 5rem;
+}
+
+/* Prova grid cel·les quadrades */
+.grid-quadrat {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 2rem;
+}
+.square {
+    width: 100%;
+    height: 0;
+    padding-top: 100%;
+    background-color: red;
+    position: relative;
+    border: 2px solid blue;
+}
+.content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: green;
+    max-height: 100%;
+    max-width: 100%;
+    padding: 2rem;
+}
+.alt {
+    max-height: 100%;
+    height: auto;
+    width: auto;
+}
+
+/* Prova grid cel·les adaptables amplada/alçada */
+
+
+
+
+.prova-svg svg {
+    fill: var(--primari);
+  width: 30rem;
+  height: 30rem;
+  box-shadow: 2px 2px 3px 3px var(--secundari-opacitat);
+
+}
+
+
+.quadrat {
+    width: 20rem;
+    height: 20rem;
+    background-color: black;
+    margin: 5rem;
+    /*-webkit-box-shadow: 3px 3px 5px 0px var(--secundari);
+    -moz-box-shadow: 3px 3px 5px 0px var(--secundari);*/
+}
+
+
+
+/*
+.ombra-no {
+    box-shadow: none;
+}
+
+/*
+div.galeria {
+    margin: 0 auto;
+}
+  
+div.galeria a {
+    display: inline-block;
+    margin: 5px;
+}
+
+*/
+
+
+
+
+
+
+.logo {
+    width: 30rem; 
+    background-color: #83a3fd; 
+}
+.logo img {
+    width: 100%;
+    fill: white;
+}
+
+
+
+
+
+
+@media (min-width: 768px) {
+    .navegacion {
+        display: flex;
+        gap: 2rem;
+    }
+}
+.navegacion__enlace {
+    display: block;
+    text-align: center;
+    font-size: 1.8rem;
+    color: var(--blanco);
+}
+
+@media (min-width: 768px) {
+    .contenido-principal {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        column-gap: 4rem;
+    }
+}
+
+.entrada {
+    border-bottom: 1px solid var(--gris);
+    margin-bottom: 2rem;
+}
+.entrada:last-of-type {
+    border: none;
+    margin-bottom: 0;
+}
+.boton {
+    display: block;
+    font-family: var(--fuenteHeading);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1rem 3rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    border: none;
+}
