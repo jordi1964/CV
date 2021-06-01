@@ -32,7 +32,7 @@ function distancia() {
 }
 
 
-/* Funció per ocultar la barra flotant si es fa click en un dels seus enllaços */
+/* Funció per ocultar la barra flotant si es fa click en un dels seus enllaços o si es clica sobre la creu */
 
 function ocultBar() {
     document.addEventListener('click', function(e) {
@@ -50,7 +50,7 @@ function ocultBar() {
 ocultBar();
 
 
-/* Funció per ocultar/visualitzar la barra flotant */
+/* Funció per ocultar/visualitzar la barra flotant en fer scroll */
 function scrolling() {
     window.onscroll = function(e) {
         let barra = document.querySelector('.barra-oculta');
@@ -70,6 +70,16 @@ function scrolling() {
 }
 
 scrolling();
+
+
+/* Funció per tancar la barra flotant a voluntat */
+
+let creu = document.querySelector('.tancar');
+creu.addEventListener("click", function(e) {
+    let barraOculta = document.querySelector('.barra-oculta');
+    barraOculta.classList.remove('barra-visible');
+}, false);
+
 
 
 /** FITXES DE PROJECTE */
