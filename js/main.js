@@ -3,6 +3,16 @@
     document.addEventListener('DOMContentLoaded', function(){
 
 
+/** MENÚ DESPLEGABLE IDIOMES **/ 
+
+let dreta = document.querySelector('#icona-idiomes');
+dreta.addEventListener("click", function( event ) {
+    /* per mitjà de la classe 'idi-visible' fem visible el menú d'idiomes */
+    let idiomes = document.querySelector('.idiomes');
+    idiomes.classList.toggle('idi-visible');
+}, false);
+
+
 /** BARRA FLOTANT OCULTA **/
 
 // Controlo la barra flotant per mitjà de la classe css "barra-visible" i les variables booleanes:
@@ -32,16 +42,19 @@ function distancia() {
 }
 
 
-/* Funció per ocultar la barra flotant si es fa click en un dels seus enllaços o si es clica sobre la creu */
+/* Funció per ocultar la barra flotant si es fa click en un dels seus enllaços */
 
 function ocultBar() {
     document.addEventListener('click', function(e) {
         let target = e.target;
-        if(target.className === 'link-ocult') {
+        if(target.classList.contains('link-ocult')) {
             /* reactivem efecte scrolling automàtic després de 2 segons */
             setTimeout(activar, 2000);
             target.parentElement.parentElement.classList.remove('barra-visible');
             /* desactivem efecte scrolling automàtic */
+            actiu = false;
+        } else if (target.classList.contains('mes-projec')) {
+            setTimeout(activar, 2000);
             actiu = false;
         }
     }, false);
@@ -72,7 +85,7 @@ function scrolling() {
 scrolling();
 
 
-/* Funció per tancar la barra flotant a voluntat */
+/* Funció per tancar la barra flotant a voluntat, clicant sobre la creu */
 
 let creu = document.querySelector('.tancar');
 creu.addEventListener("click", function(e) {
@@ -86,7 +99,7 @@ creu.addEventListener("click", function(e) {
 
 /* Funció que selecciona fitxa de projecte per click sobre h4.nom-projecte */
 
-function selFitxaProd() {
+function selFitxaProj() {
     document.addEventListener('click', function(e) {
         let target = e.target;
         let pare = target.parentElement.parentElement;
@@ -115,7 +128,86 @@ function selFitxaProd() {
     }, false);
 }
 
-selFitxaProd();
+selFitxaProj();
+
+
+
+/** DESPLEGABLES PROJECTES **/
+
+/* Funció per SEL·LECCIONAR LES PESTANYES DELS PROJECTES */
+
+function selPestanya() {
+
+    /* iniciem amb una pestanya activa, per defecte: calendaris */
+    let pestCalendaris = document.querySelector('#pest-calendaris');
+    pestCalendaris.classList.add('select');
+    /* iniciem amb una graella activa, per defecte: cartells */
+    let graeCalendaris = document.querySelector('#grae-calendaris');
+    graeCalendaris.classList.remove('graella-oculta');
+
+    document.addEventListener('click', function(e) {
+        let target = e.target;
+        let classe = target.classList;
+        /* com que el h5 té més d'una classe associada cal fer servir la propietat classList amb l'objecte DOMTokenList que genera; per buscar-hi una classe -> mètode .contains */
+
+        if(classe.contains('pestanya')) {
+            /* desactivem primer la pestanya que hi hagués activa en aquell moment */
+            let select = document.querySelector('.select');
+            select.classList.remove('select');
+
+            /* activem nova pestanya */
+            target.classList.add('select');
+
+            /* ocultem la graella que estava visible en aquell moment */
+            let graella = document.querySelectorAll('.graella');
+            let i;
+            for ( i = 0; i < graella.length; i++) {
+                /* seleccionem l'element qu no té la classe graella-oculta */
+                if(!graella[i].classList.contains('graella-oculta')) {
+                    graella[i].classList.add('graella-oculta');
+                }
+            }
+
+            /* bucle switch per seleccionar la graella visible en cada cas, eliminant la classe graella-oculta del bloc corresponent */
+            switch (target.id){
+                case 'pest-calendaris':
+                    let graeCalendaris = document.querySelector('#grae-calendaris');
+                    graeCalendaris.classList.remove('graella-oculta');
+                    break;
+                case 'pest-cartells':
+                    let graeCartells = document.querySelector('#grae-cartells');
+                    graeCartells.classList.remove('graella-oculta');
+                    break;
+                case 'pest-catalegs':
+                    let graeCatalegs = document.querySelector('#grae-catalegs');
+                    graeCatalegs.classList.remove('graella-oculta');
+                    break;
+                case 'pest-plv':
+                    let graePLV = document.querySelector('#grae-plv');
+                    graePLV.classList.remove('graella-oculta');
+                    break;
+                case 'pest-flyers':
+                    let graeFlyers = document.querySelector('#grae-flyers');
+                    graeFlyers.classList.remove('graella-oculta');
+                    break;
+                case 'pest-logos':
+                    let graeLogos = document.querySelector('#grae-logos');
+                    graeLogos.classList.remove('graella-oculta');
+                    break;
+                case 'pest-pack':
+                    let graePack = document.querySelector('#grae-pack');
+                    graePack.classList.remove('graella-oculta');
+                    break;
+                case 'pest-publi':
+                    let graePubli = document.querySelector('#grae-publi');
+                    graePubli.classList.remove('graella-oculta');
+                    break;
+            }
+        }
+    }, false);
+};
+
+selPestanya();
 
 
 }); /* DOM content loaded */
