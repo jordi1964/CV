@@ -6,8 +6,10 @@
     --primari: #000000;
     --complementari: #ffffff;
     --gris: #e1e1e1;
+    --gris-fosc: #404040;
     --secundari: #83a3fd;
     --secundari-opacitat: rgba(131,163,253, .5);
+    --blau: #162982;
 }
 html {
     box-sizing: border-box;
@@ -45,12 +47,12 @@ h1, h2, h3, h4 {
 
 /* Assigno margin-left: 2rem per h1 i h2 per tenir un correcte aliniament a l'esquerra amb els projectes */
 h1 {
-    font-size: 6rem;
-    margin: 3rem 2rem;
+    font-size: 4rem;
+    margin: 1rem 2rem;
 }
 h2 {
-    font-size: 3rem;
-    margin: 2rem 0 0 2rem;
+    font-size: 2rem;
+    margin: 0 0 0 2rem;
 }
 section h2 {
     font-size: 4rem;
@@ -61,20 +63,32 @@ h3 {
 h4 {
     font-size: 2.4rem;
 }
+h5 {
+    font-size: 2rem;
+    font-weight: 300;
+}
 p {
     font-family: var(--fontParagraf);
     font-size: 1.8rem;
     line-height: 1.4;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 481px) {
+    h1 {
+        font-size: 6rem;
+    }
+    h2 {
+        font-size: 3rem;
+    }
+}
+
+@media (min-width: 769px) {
     h1 {
         font-size: 8rem;
-        margin: 4rem 2rem;
+        margin: 3rem 2rem;
     }
     h2 {
         font-size: 4rem;
-        margin: 3rem 0 0 2rem;
     }
     section h2 {
         font-size: 6rem;
@@ -157,20 +171,53 @@ section {
 
 nav.navegacio {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-between;
+    align-items: flex-start; /* x aliniar els dos costats a dalt */
     margin-top: 2rem;
     z-index: 1; /* evita quedar oculta per la foto en formats raros */
 }
 
-nav.navegacio a {
-    margin: .5rem 0 .5rem 2rem;
+.esquerra {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.esquerra a {
+    margin-left: 2rem;
     font-size: 2rem;
     transition: all .5s ease-in-out;
 }
-nav.navegacio a:hover {
-    color: var(--secundari);
+.dreta {
+    margin-right: 2rem;
+    font-size: 2rem;
+    transition: all .5s ease-in-out;
 }
+/* classe extra .idi per ocultar el bloc */
+.idi {
+    position: relative;
+    height: 15rem;
+    overflow: hidden;
+}
+.idiomes {
+    position: absolute;
+    top: -15rem;
+    padding-left: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    transition: all .5s ease-in-out;
+}
+.idi-visible {
+    top: 0;
+}
+.link-idiomes:hover {
+    border-bottom: solid 2px var(--complementari);
+}
+.idi-actiu {
+    border-bottom: solid 2px var(--secundari);
+}
+
 div.svg {
     width: 5rem;
     height: 5rem;
@@ -186,12 +233,14 @@ svg:hover {
     fill: var(--secundari);
 }
 
-@media (min-width: 481px) {
+@media (min-width: 540px) {
     nav.navegacio {
+        margin-top: 3rem;
+    }
+    .esquerra {
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-top: 2rem;
     }
 }
 @media (min-width: 769px) {
@@ -374,7 +423,7 @@ div.svg-petit {
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     nav.navegacio-oculta {
         /* 2 propietats de la classe contenidor: */
         width: min(90%, 120rem);
@@ -403,6 +452,10 @@ div.svg-petit {
 
 /** SKILLS-PARALLAX **/
 
+.parallax {
+    border-top: solid 1px var(--blau);
+    border-bottom: solid 1px var(--blau);
+}
 .parallax::before {
     width: 100%;
     height: 100%;
@@ -429,7 +482,7 @@ div.svg-petit {
     background-image: url(../img/fotos/Img10036-fear-bn-600x400.jpg);
     content: '';
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .skills-3::before {
         background-image: url(../img/fotos/Img10036-fear-bn-1800-left.jpg);
         content: '';
@@ -441,7 +494,7 @@ div.svg-petit {
     background-image: url(../img/fotos/Img10043-bn-600x400.jpg);
     content: '';
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .skills-2::before {
         background-image: url(../img/fotos/Img10043-bn-1800-left.jpg);
         content: '';
@@ -453,7 +506,7 @@ div.svg-petit {
     background-image: url(../img/fotos/Img10046-bn-600x600.jpg);
     content: '';
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .skills-3::before {
         background-image: url(../img/fotos/Img10046-bn-1800.jpg);
         content: '';
@@ -468,7 +521,7 @@ div.svg-petit {
     flex-direction: column;
     align-items: flex-start;
 }
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .skills-center {
         width: 50%;
         margin: 0 auto;
@@ -521,13 +574,38 @@ ul.graella {
     }
 }
 
+/** Estils de les pestanyes **/
+.pestanyes {
+    margin-top: 5rem;
+    padding: 0 2rem;
+}
+
+h5 {
+    display: inline;
+    margin: 0 1rem 0 0;
+    cursor: pointer;
+}
+h5:hover {
+    border-bottom: solid 2px var(--complementari);
+}
+.select {
+    background-color: var(--primari);
+    border-bottom: solid 2px var(--secundari);
+}
 
 .projectes-contingut {
     margin-top: 2rem;
 }
 
 /* Graella projectes */
-@media (min-width: 480px) {
+li.categoria h3 {
+    padding: 5rem 2rem 1rem 2rem;
+}
+li.categoria span {
+    font-weight: bold;
+    color: var(--secundari);
+}
+@media (min-width: 481px) {
     ul.graella {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -584,14 +662,11 @@ ul.graella h4:hover {
     transform: scale(1.08);
 }
 
-li.categoria h3 {
-    padding: 5rem 2rem;
-}
-li.categoria span {
-    font-weight: bold;
-    color: var(--secundari);
-}
 
+/* Classe que oculta les graelles mitjançant JS */
+ul.graella-oculta {
+    display: none;
+}
 
 /* Estils fitxa destacada */
 .fons-blanc { /* Afegit via JS */
@@ -630,6 +705,16 @@ p.text-ocult {
 }
 /* Imatges apaisades -> 100% amplada (format x defecte) */
 
+/* + projectes */
+.mes-projectes {
+    text-align: right;
+    margin-top: 4rem;
+    padding-right: 2rem;
+}
+.mes-projectes a {
+    font-size: 2.4rem;
+    width: 100%;
+}
 
 /** CURRICULUM **/
 
@@ -648,7 +733,7 @@ p.text-ocult {
 }
 
 .curri-dades {
-    margin-top: 2rem;
+    margin-top: 3rem;
 }
 .curri-text p {
     padding: 0;
@@ -662,7 +747,9 @@ p.text-ocult {
 .curri-picto {
     margin-top: 1rem;
 }
-
+div.contacte {
+    margin-top: 1.5rem;
+}
 div.contacte div {
     display: flex;
     justify-content: flex-start;
@@ -692,12 +779,12 @@ div.contacte div {
     font-weight: bold;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
 
     .curri-graella {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 3rem;
+        gap: 4rem;
     }
     .curri-dades {
         display: grid;
@@ -727,7 +814,7 @@ div.contacte div {
     width: 100%;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .webs {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -745,157 +832,56 @@ div.contacte div {
 /** FOOTER **/
 
 footer {
-    background-color: var(--secundari);
+    background-color: var(--blau);
+}
+footer .contenidor {
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 2rem;
+}
+.xarxes {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    display: flex;
+    justify-content: flex-end;
+}
+.credits {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    padding-top: .8rem;
+}
+.footer-header {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 footer p {
-    text-align: center;
+    text-align: left;
+    padding: 0;
     margin: 0;
-    padding: 2rem;
 }
-
-/** PROVES **/
-
-.gran {
-    display: flex;
-    justify-content: center;
-}
-.petit {
-    width: 50%;
-    background-color: red;
-}
-.petit p {
+div.xarxes a {
+    color: var(--complementari);
+    font-size: 3rem;
+    padding: 0;
     margin: 0;
-    padding: 5rem;
+}
+div.footer-header a {
+    color: var(--complementari);
+    font-size: 2.2rem;
 }
 
-/* Prova grid cel·les quadrades */
-.grid-quadrat {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 2rem;
-}
-.square {
-    width: 100%;
-    height: 0;
-    padding-top: 100%;
-    background-color: red;
-    position: relative;
-    border: 2px solid blue;
-}
-.content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: green;
-    max-height: 100%;
-    max-width: 100%;
-    padding: 2rem;
-}
-.alt {
-    max-height: 100%;
-    height: auto;
-    width: auto;
-}
-
-/* Prova grid cel·les adaptables amplada/alçada */
-
-
-
-
-.prova-svg svg {
-    fill: var(--primari);
-  width: 30rem;
-  height: 30rem;
-  box-shadow: 2px 2px 3px 3px var(--secundari-opacitat);
-
-}
-
-
-.quadrat {
-    width: 20rem;
-    height: 20rem;
-    background-color: black;
-    margin: 5rem;
-    /*-webkit-box-shadow: 3px 3px 5px 0px var(--secundari);
-    -moz-box-shadow: 3px 3px 5px 0px var(--secundari);*/
-}
-
-
-
-/*
-.ombra-no {
-    box-shadow: none;
-}
-
-/*
-div.galeria {
-    margin: 0 auto;
-}
-  
-div.galeria a {
-    display: inline-block;
-    margin: 5px;
-}
-
-*/
-
-
-
-
-
-
-.logo {
-    width: 30rem; 
-    background-color: #83a3fd; 
-}
-.logo img {
-    width: 100%;
-    fill: white;
-}
-
-
-
-
-
-
-@media (min-width: 768px) {
-    .navegacion {
+@media (min-width: 481px) {
+    footer .contenidor {
         display: flex;
-        gap: 2rem;
+        align-items: center;
+        justify-content: space-between;
     }
-}
-.navegacion__enlace {
-    display: block;
-    text-align: center;
-    font-size: 1.8rem;
-    color: var(--blanco);
-}
-
-@media (min-width: 768px) {
-    .contenido-principal {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        column-gap: 4rem;
+    footer p {
+        text-align: center;
     }
-}
-
-.entrada {
-    border-bottom: 1px solid var(--gris);
-    margin-bottom: 2rem;
-}
-.entrada:last-of-type {
-    border: none;
-    margin-bottom: 0;
-}
-.boton {
-    display: block;
-    font-family: var(--fuenteHeading);
-    color: var(--blanco);
-    text-align: center;
-    padding: 1rem 3rem;
-    font-size: 1.8rem;
-    text-transform: uppercase;
-    font-weight: 700;
-    margin-bottom: 2rem;
-    border: none;
 }
